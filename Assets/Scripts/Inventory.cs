@@ -12,6 +12,9 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private List<Transform> slotLocations = new List<Transform>();
 
+    [SerializeField]
+    private float itemMoveSpeed = 15f;
+
     private int maxInventorySize = 8;
 
     private void Awake()
@@ -32,12 +35,17 @@ public class Inventory : MonoBehaviour
         {
             return;
         }
+        StartCoroutine(MoveItemTowardsSlot(clickedObject.gameObject, slotLocations[inventoryItems.Count].position));
         inventoryItems.Add(clickedObject);
-        MoveItemTowardsSlot(clickedObject.gameObject, slotLocations[inventoryItems.Count].position);
     }
 
-    void MoveItemTowardsSlot(GameObject item, Vector3 slotLocation)
+    IEnumerator MoveItemTowardsSlot(GameObject item, Vector3 slotLocation)
     {
-        //start moving the picked up item towards the slot.
+        Vector2 startPos = item.transform.position;
+        while (Vector2.Distance(item.transform.position, slotLocation) > 0.01f)
+        {
+            item.transform.position = Vector2.MoveTowards(item.transform.position, slotLocation, Time.deltaTime * itemMoveSpeed);
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
