@@ -2,37 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(ParticleSystem))]
-public class InventoryObject : MonoBehaviour, IClickable
+public class InventoryObject : HiddenObject, IClickable
 {
-    private Animator anim;
-    private ParticleSystem particleSystem;
-    private bool lootable = true;
-    private string animationName = "Clicked";
 
-    private void Start()
+    protected override void Start()
     {
-        anim = GetComponent<Animator>();
-        particleSystem = GetComponent<ParticleSystem>();
+        base.Start();
     }
 
-    public void Click()
+    public override void Click()
     {
-        if (lootable)
-        {
-            lootable = false;
-            PlayAnimation();
-        }
+        base.Click();
     }
 
-    void PlayAnimation()
+    protected override void PlayAnimation()
     {
-        anim.Play(animationName);
-        particleSystem.Play();
+        base.PlayAnimation();
     }
 
-    void AddToInventory()
+    protected override void AnimationFinished()
     {
         Inventory.Instance.AddItemToIntory(this);
     }
