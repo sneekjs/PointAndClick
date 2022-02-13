@@ -22,6 +22,7 @@ public class InventoryObject : HiddenObject, IClickable
 
     protected override void AnimationFinished()
     {
+        LevelManager.Instance.CrossOffItem((HiddenObject)this);
         Inventory.Instance.AddItemToIntory(this);
     }
 }

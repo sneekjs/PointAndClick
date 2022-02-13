@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(ParticleSystem))]
 public class HiddenObject : MonoBehaviour, IClickable
 {
+    public string objectName;
     protected Animator anim;
     protected ParticleSystem particleSystem;
     protected string animationName = "Clicked";
@@ -34,6 +35,7 @@ public class HiddenObject : MonoBehaviour, IClickable
 
     protected virtual void AnimationFinished()
     {
+        LevelManager.Instance.CrossOffItem(this);
         Destroy(gameObject);
     }
 }
