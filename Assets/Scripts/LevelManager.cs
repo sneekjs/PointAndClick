@@ -28,13 +28,9 @@ public class LevelManager : MonoBehaviour
     public void LoadLevel()
     {
         hiddenObjects.AddRange(FindObjectsOfType<HiddenObject>());
-        foreach (UItextIdentifier item in FindObjectsOfType<UItextIdentifier>())
-        {
-            hiddenObjectsText.Add(item.gameObject.GetComponent<TMP_Text>());
-        }
 
-        hiddenObjects.Reverse();
-        hiddenObjectsText.Reverse();
+        List<TMP_Text> textObjects = new List<TMP_Text>();
+        hiddenObjectsText.AddRange(FindObjectOfType<UItextIdentifier>().GetComponentsInChildren<TMP_Text>());
 
         for (int i = 0; i < hiddenObjects.Count; i++)
         {

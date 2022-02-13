@@ -6404,6 +6404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 555199760}
   - component: {fileID: 555199761}
+  - component: {fileID: 555199762}
   m_Layer: 5
   m_Name: HiddenObjectList
   m_TagString: Untagged
@@ -6486,6 +6487,18 @@ MonoBehaviour:
   m_Spacing: {x: 5, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &555199762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555199759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efdc908e97b0bdc4381c55516667d9bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &559583815
 GameObject:
   m_ObjectHideFlags: 0
@@ -18431,8 +18444,8 @@ GameObject:
   - component: {fileID: 1537785368}
   - component: {fileID: 1537785367}
   - component: {fileID: 1537785366}
-  - component: {fileID: 1537785372}
   - component: {fileID: 1537785371}
+  - component: {fileID: 1537785372}
   - component: {fileID: 1537785370}
   m_Layer: 0
   m_Name: InventoryObject
@@ -18471,7 +18484,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.64, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -18479,17 +18492,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.21, y: 0.14}
-      - {x: -0.14, y: 0.14}
-      - {x: -0.14, y: -0.26}
-      - {x: 0.17, y: -0.26}
-      - {x: 0.22, y: -0.25}
-      - {x: 0.22, y: 0.12}
-    - - {x: -0.22, y: -0.17999999}
-      - {x: -0.16, y: -0.17999999}
-      - {x: 0.14, y: 0.12}
-      - {x: 0.14, y: 0.22}
-      - {x: -0.22, y: 0.22}
+    - - {x: -0.5, y: 0.5}
+      - {x: -0.5, y: -0.5}
+      - {x: 0.5, y: -0.5}
+      - {x: 0.5, y: 0.5}
 --- !u!212 &1537785368
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -18530,7 +18536,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b6a96c7c65795c94abf54a62adbf5c38, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
