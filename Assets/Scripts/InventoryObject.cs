@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(PolygonCollider2D))]
 public class InventoryObject : HiddenObject, IClickable
 {
+    private PolygonCollider2D col;
     private Vector3 inventoryPos;
     private bool inInventory = false;
     private bool holding = false;
@@ -19,14 +21,17 @@ public class InventoryObject : HiddenObject, IClickable
             holding = value;
             if (!holding)
             {
+                CheckForInteraction();
                 transform.position = inventoryPos;
             }
+            col.enabled = !holding;
         }
     }
 
     protected override void Start()
     {
         base.Start();
+        col = GetComponent<PolygonCollider2D>();
     }
 
     public override void Click()
@@ -45,7 +50,10 @@ public class InventoryObject : HiddenObject, IClickable
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector2(mousePos.x, mousePos.y);
-            Holding = Input.GetMouseButton(0);
+            if (Holding != Input.GetMouseButton(0))
+            {
+                Holding = Input.GetMouseButton(0);
+            }
         }
     }
 
@@ -61,8 +69,18 @@ public class InventoryObject : HiddenObject, IClickable
         inInventory = true;
     }
 
-    private void ResetPos()
+    private void CheckForInteraction()
     {
-
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        if (!hit)
+        {
+            return;
+        }
+        Debug.Log(hit.collider.gameObject.name);
+        Lock targetLock = hit.collider.gameObject.GetComponent<Lock>();
+        if (targetLock != null)
+        {
+            targetLock.Unlock();
+        }
     }
 }
