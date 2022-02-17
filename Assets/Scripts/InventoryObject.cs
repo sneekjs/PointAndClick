@@ -6,6 +6,9 @@ using UnityEngine;
 public class InventoryObject : HiddenObject, IClickable
 {
     [SerializeField]
+    private bool singleUse = true;
+
+    [SerializeField]
     private string inventoryObjectID = "UNDEFINED";
     private PolygonCollider2D col;
     private Vector3 inventoryPos;
@@ -67,7 +70,7 @@ public class InventoryObject : HiddenObject, IClickable
     protected override void AnimationFinished()
     {
         LevelManager.Instance.CrossOffItem((HiddenObject)this);
-        Inventory.Instance.AddItemToIntory(this);
+        Inventory.Instance.AddItemToInventory(this);
         inInventory = true;
     }
 
@@ -83,6 +86,11 @@ public class InventoryObject : HiddenObject, IClickable
         if (targetLock != null && targetLock.lockID == inventoryObjectID)
         {
             targetLock.Unlock();
+            if (singleUse)
+            {
+                Inventory.Instance.RemoveItemFromInventory(this);
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -29,14 +29,14 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddItemToIntory(InventoryObject clickedObject)
+    public void AddItemToInventory(InventoryObject addedItem)
     {
         if (inventoryItems.Count >= 8)
         {
             return;
         }
-        StartCoroutine(MoveItemTowardsSlot(clickedObject.gameObject, slotLocations[inventoryItems.Count].position));
-        inventoryItems.Add(clickedObject);
+        StartCoroutine(MoveItemTowardsSlot(addedItem.gameObject, slotLocations[inventoryItems.Count].position));
+        inventoryItems.Add(addedItem);
     }
 
     IEnumerator MoveItemTowardsSlot(GameObject item, Vector3 slotLocation)
@@ -46,6 +46,14 @@ public class Inventory : MonoBehaviour
         {
             item.transform.position = Vector2.MoveTowards(item.transform.position, slotLocation, Time.deltaTime * itemMoveSpeed);
             yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public void RemoveItemFromInventory(InventoryObject removedItem)
+    {
+        if (inventoryItems.Contains(removedItem))
+        {
+            inventoryItems.Remove(removedItem);
         }
     }
 }
