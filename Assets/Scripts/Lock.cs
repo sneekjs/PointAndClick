@@ -4,9 +4,17 @@ using UnityEngine;
 
 public class Lock : MonoBehaviour, IClickable
 {
+    private string unlockAnimation = "Unlock";
+    private Animator anim;
+
+    private void Start()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
+
     public void Unlock()
     {
-        Debug.Log("Cool, you just unlocked something!"); //implement an animation that makes a certain area transparant
+        anim.Play(unlockAnimation);
     }
 
     public void Click()
