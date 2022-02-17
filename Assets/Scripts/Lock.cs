@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lock : MonoBehaviour, IClickable
 {
+    public string lockID = "UNDEFINED";
     private string unlockAnimation = "Unlock";
     private Animator anim;
 

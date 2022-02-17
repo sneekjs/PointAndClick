@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(PolygonCollider2D))]
 public class InventoryObject : HiddenObject, IClickable
 {
+    [SerializeField]
+    private string inventoryObjectID = "UNDEFINED";
     private PolygonCollider2D col;
     private Vector3 inventoryPos;
     private bool inInventory = false;
@@ -78,7 +80,7 @@ public class InventoryObject : HiddenObject, IClickable
         }
         Debug.Log(hit.collider.gameObject.name);
         Lock targetLock = hit.collider.gameObject.GetComponent<Lock>();
-        if (targetLock != null)
+        if (targetLock != null && targetLock.lockID == inventoryObjectID)
         {
             targetLock.Unlock();
         }
