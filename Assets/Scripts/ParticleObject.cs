@@ -3,17 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(ParticleSystem))]
-public class ParticleObject : MonoBehaviour, IClickable
+public class ParticleObject : WorldObject, IClickable
 {
     private ParticleSystem particleSystem;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public void Click()
+    public override void Click()
     {
+        base.Click();
         particleSystem.Play();
     }
 }

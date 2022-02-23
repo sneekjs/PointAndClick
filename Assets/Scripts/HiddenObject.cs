@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ParticleSystem))]
-public class HiddenObject : MonoBehaviour, IClickable
+public class HiddenObject : WorldObject, IClickable
 {
     public string objectName;
     protected Animator anim;
@@ -12,16 +12,18 @@ public class HiddenObject : MonoBehaviour, IClickable
     protected string animationName = "Clicked";
     protected bool isInteractable = true;
 
-    protected virtual void Start()
+    protected override void Start()
     {
+        base.Start();
         anim = GetComponent<Animator>();
         particleSystem = GetComponent<ParticleSystem>();
     }
 
-    public virtual void Click()
+    public override void Click()
     {
         if (isInteractable)
         {
+            base.Click();
             isInteractable = false;
             PlayAnimation();
         }

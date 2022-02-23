@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lock : MonoBehaviour, IClickable
+public class Lock : WorldObject, IClickable
 {
     public string lockID = "UNDEFINED";
     private string unlockAnimation = "Unlock";
     private Animator anim;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         anim = gameObject.GetComponent<Animator>();
     }
 
@@ -18,8 +19,9 @@ public class Lock : MonoBehaviour, IClickable
         anim.Play(unlockAnimation);
     }
 
-    public void Click()
+    public override void Click()
     {
+        base.Click();
         Debug.Log("You clicked a lock that is locked."); //Implement a way to make this known to the player.
     }
 }

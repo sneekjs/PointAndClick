@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class AnimatedObject : MonoBehaviour, IClickable
+public class AnimatedObject : WorldObject, IClickable
 {
     private Animator anim;
     public string animationName = "Default";
 
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         anim = GetComponent<Animator>();
     }
 
-    public void Click()
+    public override void Click()
     {
+        base.Start();
         anim.Play(animationName);
     }
 }
